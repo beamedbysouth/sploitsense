@@ -1,7 +1,9 @@
 body {
-    background-color: black;
-    color: white;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+    display: grid; /* Enables Grid layout */
+    place-items: center; /* Centers content vertically and horizontally */
+    height: 100vh; /* Sets height to full viewport */
+    margin: 0; /* Removes default margin */
+    background-color: black; /* Optional: Black background */
+    color: white; /* Optional: White text for contrast */
+    font-family: Arial, sans-serif; /* Optional: Font styling */
 }
