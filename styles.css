@@ -1,6 +1,7 @@
 body {
-    display: grid; /* Enables Grid layout */
-    place-items: center; /* Centers content vertically and horizontally */
+    display: flex; /* Enables Flexbox */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
     height: 100vh; /* Sets height to full viewport */
     margin: 0; /* Removes default margin */
     background-color: black; /* Optional: Black background */
