@@ -1,26 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-header {
-    background: #000000;
-    color: white;
-    padding: 1rem;
-}
-
-main {
-    padding: 2rem;
-}
-
-footer {
-    background: #000000;
-    color: white;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    background-color: black;
+    color: white; /* Optional: Sets text color to white for contrast */
+    margin: 0; /* Optional: Removes default margin for the body */
+    padding: 0; /* Optional: Removes default padding for the body */
 }
