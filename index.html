@@ -1,27 +1,77 @@
-<link rel="stylesheet" href="styles.css">
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I'm Rain.</title>
-    <!-- Link to external CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> <!-- Montserrat Font -->
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Inline CSS: for quick testing (optional) */
+        /* Styling for the body */
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Full height */
-            margin: 0; /* Remove default margins */
-            background-color: black; /* Black background */
-            color: white; /* White text */
-            font-family: Arial, sans-serif; /* Clean font */
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            color: white;
+            font-family: 'Montserrat', sans-serif; /* Applying Montserrat font */
+            text-align: center;
+        }
+
+        img {
+            height: 125px;
+            width: 125px;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 25px; /* Make the text smaller */
+        }
+
+        .fade-in {
+            opacity: 50;
+            animation: fadeIn 2s ease-in-out forwards;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .username {
+            margin-top: 1px;
+            font-size: 35px;
+            margin-bottom: 15px;
+            font-weight: bold; /* Make the username bold */
         }
     </style>
 </head>
 <body>
-    <h1>Hi</h1>
+    <!-- Profile Image -->
+    <img src="pfp.png" alt="Profile Picture">
+
+    <!-- Username Text Below Image (Bold) -->
+    <div class="username">@m2.q</div>
+
+    <!-- Main Text with Animation -->
+    <h1>Hi, Rain is currently <span class="fade-in">available</span></h1>
+
+    <!-- Autoplay Audio -->
+    <audio autoplay id="myAudio" muted>
+        <source src="505.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 </body>
 </html>
