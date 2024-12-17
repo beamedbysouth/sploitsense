@@ -56,18 +56,25 @@
             margin-bottom: 15px;
             font-weight: bold; /* Make the username bold */
         }
-    </style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2NNMKNEH3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-Z2NNMKNEH3');
-</script>
+        /* New Styles for the Link Text */
+        .top-text {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            text-align: center;
+            background-color: black;
+            color: white;
+            padding: 10px 0;
+            font-size: 20px;
+            text-shadow: 0 0 5px #ffffff63, 0 0 10px #ffffff62;
+        }
+    </style>
 </head>
 <body>
+    <!-- Top Centered Text -->
+    <div class="top-text">https://sploitsense.xyz</div>
+
     <!-- Profile Image -->
     <img src="pfp.png" alt="Profile Picture">
 
@@ -75,10 +82,10 @@
     <div class="username">@m2.q</div>
 
     <!-- Main Text with Animation -->
-    <h1>Hi, Rain is currently <span class="fade-in">gaming.</span></h1>
+    <h1>Hi, Rain is currently <span class="fade-in">available</span></h1>
 
     <!-- Autoplay Audio -->
-    <audio autoplay id="myAudio">
+    <audio autoplay id="myAudio" muted>
         <source src="505.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
