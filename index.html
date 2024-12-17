@@ -69,6 +69,13 @@
             font-size: 20px;
             text-shadow: 0 0 5px #ffffff63, 0 0 10px #ffffff62;
         }
+
+        /* Small Text for Timezone */
+        .timezone {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #cccccc; /* Light grey text */
+        }
     </style>
 </head>
 <body>
@@ -82,12 +89,51 @@
     <div class="username">@m2.q</div>
 
     <!-- Main Text with Animation -->
-    <h1>Hi, Rain is currently <span class="fade-in">available</span></h1>
+    <h1>Hi, Rain is currently <span class="fade-in" id="status-text">available</span></h1>
+
+    <!-- Timezone Text -->
+    <p id="timezone" class="timezone"></p>
 
     <!-- Autoplay Audio -->
     <audio autoplay id="myAudio" muted>
         <source src="505.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
+    <script>
+        // Function to Update Status Based on Time
+        function updateStatusBasedOnTime() {
+            const statusTextElement = document.getElementById('status-text');
+            const currentHour = new Date().getHours(); // Get current hour (0-23)
+
+            let status = '';
+
+            // Define time ranges and corresponding statuses
+            if (currentHour >= 8 && currentHour < 15) {
+                status = "at school";
+            } else if (currentHour >= 15 && currentHour < 23) {
+                status = "available";
+            } else {
+                status = "sleeping";
+            }
+
+            // Update the text content
+            statusTextElement.textContent = status;
+        }
+
+        // Function to get the user's timezone and display it
+        function displayTimezone() {
+            const timezoneElement = document.getElementById('timezone');
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            timezoneElement.textContent = `Timezone: ${timezone}`;
+        }
+
+        // Run the functions to set the initial status and timezone
+        updateStatusBasedOnTime();
+        displayTimezone();
+
+        // Optionally, update the status every minute to reflect real-time changes
+        setInterval(updateStatusBasedOnTime, 60000);
+    </script>
 </body>
 </html>
