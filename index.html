@@ -94,15 +94,22 @@
             top: -10px;
             width: 2px;
             height: 20px;
-            background-color: #00f; /* Blue raindrop color */
-            opacity: 0.7;
-            animation: fall linear infinite;
+            background-color: white; /* White raindrop color */
+            opacity: 0; /* Initially hidden */
+            animation: fall linear infinite, fadeInDrop 0.2s forwards; /* Add fade-in effect */
         }
 
         /* Falling animation */
         @keyframes fall {
             to {
                 transform: translateY(100vh);
+            }
+        }
+
+        /* Fade-in animation for raindrops */
+        @keyframes fadeInDrop {
+            to {
+                opacity: 0.7;
             }
         }
     </style>
