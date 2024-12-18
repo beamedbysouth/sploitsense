@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I'm Rain.</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> <!-- Montserrat Font -->
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* Styling for the body */
         body {
@@ -19,6 +18,7 @@
             color: white;
             font-family: 'Montserrat', sans-serif; /* Applying Montserrat font */
             text-align: center;
+            overflow: hidden; /* Prevent scrollbars from appearing */
         }
 
         img {
@@ -76,11 +76,43 @@
             font-size: 14px;
             color: #cccccc; /* Light grey text */
         }
+
+        /* Rain container styling */
+        #rain-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* So rain doesn't block interactions */
+            overflow: hidden;
+        }
+
+        /* Raindrop styling */
+        .raindrop {
+            position: absolute;
+            top: -10px;
+            width: 2px;
+            height: 20px;
+            background-color: #00f; /* Blue raindrop color */
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+
+        /* Falling animation */
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Top Centered Text -->
     <div class="top-text">https://sploitsense.xyz</div>
+
+    <!-- Rain Container for Falling Effect -->
+    <div id="rain-container"></div>
 
     <!-- Profile Image -->
     <img src="pfp.png" alt="Profile Picture">
@@ -134,7 +166,35 @@
 
         // Optionally, update the status every minute to reflect real-time changes
         setInterval(updateStatusBasedOnTime, 60000);
+
+        // JavaScript to create falling rain effect
+        const rainContainer = document.getElementById('rain-container');
+
+        // Function to create a single raindrop
+        function createRaindrop() {
+            const raindrop = document.createElement('div');
+            raindrop.classList.add('raindrop');
+
+            // Randomize raindrop properties
+            raindrop.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+            raindrop.style.animationDuration = `${Math.random() * 2 + 2}s`; // Random fall duration
+            raindrop.style.animationDelay = `${Math.random() * 5}s`; // Random start delay
+
+            rainContainer.appendChild(raindrop);
+
+            // Remove the raindrop after it falls
+            setTimeout(() => {
+                raindrop.remove();
+            }, 5000);
+        }
+
+        // Function to generate multiple raindrops
+        function generateRain() {
+            setInterval(createRaindrop, 100); // Add a new raindrop every 100ms
+        }
+
+        // Start the rain effect
+        generateRain();
     </script>
-<div id="rain-container"></div>
 </body>
 </html>
