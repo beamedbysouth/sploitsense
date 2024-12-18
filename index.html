@@ -6,21 +6,37 @@
     <title>I'm Rain.</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> <!-- Montserrat Font -->
     <style>
-        /* Styling for the body */
+        /* General body styles with fading background */
         body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('wallpaperflare.com_wallpaper.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0; /* Start with invisible background */
+            animation: fadeInBackground 2s ease-in forwards; /* Fade-in animation */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: black;
             color: white;
             font-family: 'Montserrat', sans-serif; /* Applying Montserrat font */
             text-align: center;
-            overflow: hidden; /* Prevent scrollbars from appearing */
         }
 
+        /* Fade-in animation for background */
+        @keyframes fadeInBackground {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Profile Image */
         img {
             height: 125px;
             width: 125px;
@@ -29,13 +45,13 @@
             object-fit: cover;
         }
 
+        /* Heading and username */
         h1 {
             margin: 0;
             font-size: 25px; /* Make the text smaller */
         }
 
         .fade-in {
-            opacity: 50;
             animation: fadeIn 2s ease-in-out forwards;
             font-weight: bold;
             text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff;
@@ -57,13 +73,13 @@
             font-weight: bold; /* Make the username bold */
         }
 
-        /* New Styles for the Link Text */
+        /* Top Text (Link) */
         .top-text {
             position: absolute;
             top: 0;
             width: 100%;
             text-align: center;
-            background-color: black;
+            background-color: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 10px 0;
             font-size: 20px;
@@ -76,55 +92,16 @@
             font-size: 14px;
             color: #cccccc; /* Light grey text */
         }
-
-        /* Rain container styling */
-        #rain-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* So rain doesn't block interactions */
-            overflow: hidden;
-        }
-
-        /* Raindrop styling */
-        .raindrop {
-            position: absolute;
-            top: -10px;
-            width: 2px;
-            height: 20px;
-            background-color: white; /* White raindrop color */
-            opacity: 0; /* Initially hidden */
-            animation: fall linear infinite, fadeInDrop 0.2s forwards; /* Add fade-in effect */
-        }
-
-        /* Falling animation */
-        @keyframes fall {
-            to {
-                transform: translateY(100vh);
-            }
-        }
-
-        /* Fade-in animation for raindrops */
-        @keyframes fadeInDrop {
-            to {
-                opacity: 0.7;
-            }
-        }
     </style>
 </head>
 <body>
     <!-- Top Centered Text -->
     <div class="top-text">https://sploitsense.xyz</div>
 
-    <!-- Rain Container for Falling Effect -->
-    <div id="rain-container"></div>
-
     <!-- Profile Image -->
     <img src="pfp.png" alt="Profile Picture">
 
-    <!-- Username Text Below Image (Bold) -->
+    <!-- Username Text Below Image -->
     <div class="username">@m2.q</div>
 
     <!-- Main Text with Animation -->
@@ -173,35 +150,6 @@
 
         // Optionally, update the status every minute to reflect real-time changes
         setInterval(updateStatusBasedOnTime, 60000);
-
-        // JavaScript to create falling rain effect
-        const rainContainer = document.getElementById('rain-container');
-
-        // Function to create a single raindrop
-        function createRaindrop() {
-            const raindrop = document.createElement('div');
-            raindrop.classList.add('raindrop');
-
-            // Randomize raindrop properties
-            raindrop.style.left = `${Math.random() * 100}vw`; // Random horizontal position
-            raindrop.style.animationDuration = `${Math.random() * 2 + 2}s`; // Random fall duration
-            raindrop.style.animationDelay = `${Math.random() * 5}s`; // Random start delay
-
-            rainContainer.appendChild(raindrop);
-
-            // Remove the raindrop after it falls
-            setTimeout(() => {
-                raindrop.remove();
-            }, 5000);
-        }
-
-        // Function to generate multiple raindrops
-        function generateRain() {
-            setInterval(createRaindrop, 100); // Add a new raindrop every 100ms
-        }
-
-        // Start the rain effect
-        generateRain();
     </script>
 </body>
 </html>
