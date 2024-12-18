@@ -6,27 +6,41 @@
     <title>I'm Rain.</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> <!-- Montserrat Font -->
     <style>
-        /* General body styles with fading background */
+        /* Body styles */
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
-            background-image: url('wallpaperflare.com_wallpaper.jpg'); /* Replace with your image path */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0; /* Start with invisible background */
-            animation: fadeInBackground 2s ease-in forwards; /* Fade-in animation */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
-            font-family: 'Montserrat', sans-serif; /* Applying Montserrat font */
+            font-family: 'Montserrat', sans-serif; /* Montserrat font */
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-color: black; /* Fallback color */
         }
 
-        /* Fade-in animation for background */
+        /* Fading background image using ::before pseudo-element */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('wallpaperflare.com_wallpaper.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0; /* Start invisible */
+            animation: fadeInBackground 2s ease-in forwards; /* Fade-in animation */
+            z-index: -1; /* Place it behind the content */
+        }
+
+        /* Keyframe animation for the background */
         @keyframes fadeInBackground {
             from {
                 opacity: 0;
@@ -36,19 +50,22 @@
             }
         }
 
-        /* Profile Image */
+        /* Content styling */
         img {
             height: 125px;
             width: 125px;
             margin-bottom: 10px;
             border-radius: 50%;
             object-fit: cover;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Heading and username */
         h1 {
             margin: 0;
-            font-size: 25px; /* Make the text smaller */
+            font-size: 25px;
+            position: relative;
+            z-index: 1;
         }
 
         .fade-in {
@@ -57,23 +74,15 @@
             text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
         .username {
             margin-top: 1px;
             font-size: 35px;
             margin-bottom: 15px;
-            font-weight: bold; /* Make the username bold */
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Top Text (Link) */
         .top-text {
             position: absolute;
             top: 0;
@@ -84,13 +93,15 @@
             padding: 10px 0;
             font-size: 20px;
             text-shadow: 0 0 5px #ffffff63, 0 0 10px #ffffff62;
+            z-index: 1;
         }
 
-        /* Small Text for Timezone */
         .timezone {
             margin-top: 5px;
             font-size: 14px;
-            color: #cccccc; /* Light grey text */
+            color: #cccccc;
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
@@ -109,12 +120,6 @@
 
     <!-- Timezone Text -->
     <p id="timezone" class="timezone"></p>
-
-    <!-- Autoplay Audio -->
-    <audio autoplay id="myAudio" muted>
-        <source src="505.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
 
     <script>
         // Function to Update Status Based on Time
