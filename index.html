@@ -1,184 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I'm Rain.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> <!-- Montserrat Font -->
-    <style>
-        /* Body styles */
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-family: 'Montserrat', sans-serif; /* Montserrat font */
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            background-color: black; /* Black background */
+<script>
+    // Function to Update Status Based on UK Time
+    function updateStatusBasedOnTimeUK() {
+        const statusTextElement = document.getElementById('status-text');
+
+        // Get the current time in UTC and convert it to UK time
+        const nowUTC = new Date();
+        const ukOffset = 0; // UK Timezone Offset for UTC
+        const isDST = new Date().getTimezoneOffset() !== 0; // Detect Daylight Saving Time
+        const currentHourUK = (nowUTC.getUTCHours() + (isDST ? 1 : ukOffset)) % 24; // Adjust for BST if applicable
+
+        let status = '';
+
+        // Define time ranges and corresponding statuses
+        if (currentHourUK >= 8 && currentHourUK < 15) {
+            status = "at school";
+        } else if (currentHourUK >= 15 && currentHourUK < 23) {
+            status = "available";
+        } else {
+            status = "sleeping";
         }
 
-        /* Content styling */
-        img {
-            height: 125px;
-            width: 125px;
-            margin-bottom: 10px;
-            border-radius: 50%;
-            object-fit: cover;
-            position: relative;
-            z-index: 1;
+        // Update the text content
+        statusTextElement.textContent = status;
+    }
+
+    // Function to Display Timezone as UK
+    function displayTimezoneUK() {
+        const timezoneElement = document.getElementById('timezone');
+        timezoneElement.textContent = `Timezone: Europe/London (UK)`;
+    }
+
+    // Generate rainfall
+    function createRain() {
+        const rainContainer = document.getElementById('rain');
+        const numberOfDrops = 200; // Adjust for more or fewer drops
+
+        for (let i = 0; i < numberOfDrops; i++) {
+            const raindrop = document.createElement('div');
+            raindrop.classList.add('raindrop');
+            raindrop.style.left = `${Math.random() * 100}vw`;
+            raindrop.style.top = `${Math.random() * -100}vh`; // Start above the screen
+            raindrop.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random fall speed
+            raindrop.style.animationDelay = `${Math.random() * 2}s`; // Random delay
+            rainContainer.appendChild(raindrop);
         }
+    }
 
-        h1 {
-            margin: 0;
-            font-size: 25px;
-            position: relative;
-            z-index: 1;
-        }
+    // Initialize
+    updateStatusBasedOnTimeUK();
+    displayTimezoneUK();
+    createRain();
 
-        .fade-in {
-            animation: fadeIn 2s ease-in-out forwards;
-            font-weight: bold;
-            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff;
-        }
-
-        .username {
-            margin-top: 1px;
-            font-size: 35px;
-            margin-bottom: 15px;
-            font-weight: bold;
-            position: relative;
-            z-index: 1;
-        }
-
-        .top-text {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px 0;
-            font-size: 20px;
-            text-shadow: 0 0 5px #ffffff63, 0 0 10px #ffffff62;
-            z-index: 1;
-        }
-
-        .timezone {
-            margin-top: 5px;
-            font-size: 14px;
-            color: #cccccc;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Rainfall styles */
-        .rain {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .raindrop {
-            position: absolute;
-            width: 2px;
-            height: 15px;
-            background-color: rgba(255, 255, 255, 0.7);
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            from {
-                transform: translateY(-100%);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Top Centered Text -->
-    <div class="top-text">https://sploitsense.xyz</div>
-
-    <!-- Profile Image -->
-    <img src="pfp.png" alt="Profile Picture">
-
-    <!-- Username Text Below Image -->
-    <div class="username">@m2.q</div>
-
-    <!-- Main Text with Animation -->
-    <h1>Hi, Rain is currently <span class="fade-in" id="status-text">available</span></h1>
-
-    <!-- Timezone Text -->
-    <p id="timezone" class="timezone"></p>
-
-    <!-- Rainfall container -->
-    <div class="rain" id="rain"></div>
-
-    <script>
-        // Function to Update Status Based on Time
-        function updateStatusBasedOnTime() {
-            const statusTextElement = document.getElementById('status-text');
-            const currentHour = new Date().getHours(); // Get current hour (0-23)
-
-            let status = '';
-
-            // Define time ranges and corresponding statuses
-            if (currentHour >= 8 && currentHour < 15) {
-                status = "at school";
-            } else if (currentHour >= 15 && currentHour < 23) {
-                status = "available";
-            } else {
-                status = "sleeping";
-            }
-
-            // Update the text content
-            statusTextElement.textContent = status;
-        }
-
-        // Function to get the user's timezone and display it
-        function displayTimezone() {
-            const timezoneElement = document.getElementById('timezone');
-            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            timezoneElement.textContent = `Timezone: ${timezone}`;
-        }
-
-        // Generate rainfall
-        function createRain() {
-            const rainContainer = document.getElementById('rain');
-            const numberOfDrops = 200; // Adjust for more or fewer drops
-
-            for (let i = 0; i < numberOfDrops; i++) {
-                const raindrop = document.createElement('div');
-                raindrop.classList.add('raindrop');
-                raindrop.style.left = `${Math.random() * 100}vw`;
-                raindrop.style.top = `${Math.random() * -100}vh`; // Start above the screen
-                raindrop.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random fall speed
-                raindrop.style.animationDelay = `${Math.random() * 2}s`; // Random delay
-                rainContainer.appendChild(raindrop);
-            }
-        }
-
-        // Initialize
-        updateStatusBasedOnTime();
-        displayTimezone();
-        createRain();
-
-        // Update status every minute
-        setInterval(updateStatusBasedOnTime, 60000);
-    </script>
-</body>
-</html>
+    // Update status every minute
+    setInterval(updateStatusBasedOnTimeUK, 60000);
+</script>
