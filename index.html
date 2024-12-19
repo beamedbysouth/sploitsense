@@ -20,34 +20,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            background-color: black; /* Fallback color */
-        }
-
-        /* Fading background image using ::before pseudo-element */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('wallpaperflare.com_wallpaper.jpg'); /* Replace with your image path */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0; /* Start invisible */
-            animation: fadeInBackground 2s ease-in forwards; /* Fade-in animation */
-            z-index: -1; /* Place it behind the content */
-        }
-
-        /* Keyframe animation for the background */
-        @keyframes fadeInBackground {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 0.5;
-            }
+            background-color: black; /* Black background */
         }
 
         /* Content styling */
@@ -103,6 +76,37 @@
             position: relative;
             z-index: 1;
         }
+
+        /* Rainfall styles */
+        .rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .raindrop {
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-100%);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -120,6 +124,9 @@
 
     <!-- Timezone Text -->
     <p id="timezone" class="timezone"></p>
+
+    <!-- Rainfall container -->
+    <div class="rain" id="rain"></div>
 
     <script>
         // Function to Update Status Based on Time
@@ -149,11 +156,28 @@
             timezoneElement.textContent = `Timezone: ${timezone}`;
         }
 
-        // Run the functions to set the initial status and timezone
+        // Generate rainfall
+        function createRain() {
+            const rainContainer = document.getElementById('rain');
+            const numberOfDrops = 200; // Adjust for more or fewer drops
+
+            for (let i = 0; i < numberOfDrops; i++) {
+                const raindrop = document.createElement('div');
+                raindrop.classList.add('raindrop');
+                raindrop.style.left = `${Math.random() * 100}vw`;
+                raindrop.style.top = `${Math.random() * -100}vh`; // Start above the screen
+                raindrop.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random fall speed
+                raindrop.style.animationDelay = `${Math.random() * 2}s`; // Random delay
+                rainContainer.appendChild(raindrop);
+            }
+        }
+
+        // Initialize
         updateStatusBasedOnTime();
         displayTimezone();
+        createRain();
 
-        // Optionally, update the status every minute to reflect real-time changes
+        // Update status every minute
         setInterval(updateStatusBasedOnTime, 60000);
     </script>
 </body>
