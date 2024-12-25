@@ -25,10 +25,13 @@
 
         /* Content styling */
         img {
-            height: 30px; /* Adjust the size of the image */
-            width: 30px;
+            height: 125px;
+            width: 125px;
+            margin-bottom: 10px;
             border-radius: 50%;
             object-fit: cover;
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
@@ -44,22 +47,13 @@
             text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff;
         }
 
-        .username-container {
-            display: flex; /* Use flex to align the image and text side by side */
-            align-items: center; /* Vertically align image and text */
-            justify-content: center; /* Center the content horizontally */
+        .username {
+            margin-top: 1px;
             font-size: 35px;
             margin-bottom: 15px;
             font-weight: bold;
             position: relative;
             z-index: 1;
-        }
-
-        .username {
-            margin: 0;
-            font-size: 35px;
-            font-weight: bold;
-            margin-right: 10px; /* Space between text and image */
         }
 
         .top-text {
@@ -119,13 +113,11 @@
     <!-- Top Centered Text -->
     <div class="top-text">https://sploitsense.xyz</div>
 
-    <!-- Profile Image and Username in a container -->
-    <div class="username-container">
-        <img src="pfp.png" alt="Profile Picture">
-        <div class="username">@m2.q</div>
-        <!-- New Image next to the username -->
-        <img src="second-image.png" alt="Second Image">
-    </div>
+    <!-- Profile Image -->
+    <img src="pfp.png" alt="Profile Picture">
+
+    <!-- Username Text Below Image -->
+    <div class="username">@m2.q</div>
 
     <!-- Main Text with Animation -->
     <h1>Hi, Rain is currently <span class="fade-in" id="status-text">available</span></h1>
@@ -174,7 +166,7 @@
         // Function to Display Timezone as UK
         function displayTimezoneUK() {
             const timezoneElement = document.getElementById('timezone');
-            timezoneElement.textContent = `Timezone: Europe/London (UK)`;
+            timezoneElement.textContent = Timezone: Europe/London (UK);
         }
 
         // Generate rainfall
@@ -185,10 +177,10 @@
             for (let i = 0; i < numberOfDrops; i++) {
                 const raindrop = document.createElement('div');
                 raindrop.classList.add('raindrop');
-                raindrop.style.left = `${Math.random() * 100}vw`;
-                raindrop.style.top = `${Math.random() * -100}vh`; // Start above the screen
-                raindrop.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random fall speed
-                raindrop.style.animationDelay = `${Math.random() * 2}s`; // Random delay
+                raindrop.style.left = ${Math.random() * 100}vw;
+                raindrop.style.top = ${Math.random() * -100}vh; // Start above the screen
+                raindrop.style.animationDuration = ${Math.random() * 3 + 2}s; // Random fall speed
+                raindrop.style.animationDelay = ${Math.random() * 2}s; // Random delay
                 rainContainer.appendChild(raindrop);
             }
         }
