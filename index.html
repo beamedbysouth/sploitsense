@@ -25,13 +25,11 @@
 
         /* Content styling */
         img {
-            height: 125px;
-            width: 125px;
-            margin-bottom: 10px;
+            height: 30px; /* Adjust the size of the image */
+            width: 30px;
             border-radius: 50%;
             object-fit: cover;
-            position: relative;
-            z-index: 1;
+            margin-right: 10px; /* Space between image and text */
         }
 
         h1 {
@@ -47,13 +45,21 @@
             text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff;
         }
 
-        .username {
-            margin-top: 1px;
+        .username-container {
+            display: flex; /* Use flex to align the image and text side by side */
+            align-items: center; /* Vertically align image and text */
+            justify-content: center; /* Center the content horizontally */
             font-size: 35px;
             margin-bottom: 15px;
             font-weight: bold;
             position: relative;
             z-index: 1;
+        }
+
+        .username {
+            margin: 0;
+            font-size: 35px;
+            font-weight: bold;
         }
 
         .top-text {
@@ -113,11 +119,11 @@
     <!-- Top Centered Text -->
     <div class="top-text">https://sploitsense.xyz</div>
 
-    <!-- Profile Image -->
-    <img src="pfp.png" alt="Profile Picture">
-
-    <!-- Username Text Below Image -->
-    <div class="username">@m2.q</div>
+    <!-- Profile Image and Username in a container -->
+    <div class="username-container">
+        <img src="pfp.png" alt="Profile Picture">
+        <div class="username">@m2.q</div>
+    </div>
 
     <!-- Main Text with Animation -->
     <h1>Hi, Rain is currently <span class="fade-in" id="status-text">available</span></h1>
