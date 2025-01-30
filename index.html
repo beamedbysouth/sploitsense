@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I'm Rain.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <style>
         /* Body styles */
         body {
@@ -16,11 +16,11 @@
             justify-content: center;
             align-items: center;
             color: white;
-            font-family: 'Montserrat', sans-serif; /* Montserrat font */
+            font-family: 'Montserrat', sans-serif;
             text-align: center;
             position: relative;
             overflow: hidden;
-            background-color: black; /* Black background */
+            background-color: black;
         }
 
         /* Content styling */
@@ -107,6 +107,32 @@
                 opacity: 0;
             }
         }
+
+        /* Game container */
+        .game-container {
+            width: 80%;
+            height: 60vh;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .credits {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .credits a {
+            color: #ffffff;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -125,25 +151,38 @@
     <!-- Timezone Text -->
     <p id="timezone" class="timezone"></p>
 
+    <!-- Game Embed -->
+    <div class="game-container">
+        <iframe src="https://mrmine.com/game/" title="Mr.Mine" scrolling="no" 
+            allow="autoplay; payment; fullscreen; microphone; clipboard-read; focus-without-user-activation *; 
+            screen-wake-lock; gamepad; clipboard-write 'self' https://mrmine.com" 
+            webkitallowfullscreen="true" mozallowfullscreen="true" msallowfullscreen="true" 
+            allowfullscreen="true" loading="eager">
+        </iframe>
+    </div>
+
+    <!-- Game Credits -->
+    <div class="credits">
+        <a href="https://mrmine.com/" target="_blank">Mr.Mine</a> is developed by 
+        <a href="https://playsaurus.com" target="_blank">Playsaurus</a> - an idle game development studio.
+    </div>
+
     <!-- Rainfall container -->
     <div class="rain" id="rain"></div>
 
     <script>
-        // Function to Update Status Based on UK Time
         function updateStatusBasedOnTimeUK() {
             const statusTextElement = document.getElementById('status-text');
 
-            // Get the current time in UTC and convert it to UK time
             const nowUTC = new Date();
-            const ukOffset = 0; // UK Timezone Offset for UTC
-            const isDST = new Date().getTimezoneOffset() !== 0; // Detect Daylight Saving Time
-            const currentHourUK = (nowUTC.getUTCHours() + (isDST ? 1 : ukOffset)) % 24; // Adjust for BST if applicable
-            const currentDayUK = nowUTC.getUTCDay(); // Day of the week (0 = Sunday, 6 = Saturday)
+            const ukOffset = 0;
+            const isDST = new Date().getTimezoneOffset() !== 0;
+            const currentHourUK = (nowUTC.getUTCHours() + (isDST ? 1 : ukOffset)) % 24;
+            const currentDayUK = nowUTC.getUTCDay();
 
             let status = '';
 
-            // Define time ranges and corresponding statuses, excluding weekends
-            if (currentDayUK >= 1 && currentDayUK <= 5) { // Monday to Friday
+            if (currentDayUK >= 1 && currentDayUK <= 5) {
                 if (currentHourUK >= 8 && currentHourUK < 15) {
                     status = "at school";
                 } else if (currentHourUK >= 15 && currentHourUK < 23) {
@@ -151,7 +190,7 @@
                 } else {
                     status = "sleeping";
                 }
-            } else { // Weekends
+            } else {
                 if (currentHourUK >= 8 && currentHourUK < 23) {
                     status = "available";
                 } else {
@@ -159,38 +198,32 @@
                 }
             }
 
-            // Update the text content
             statusTextElement.textContent = status;
         }
 
-        // Function to Display Timezone as UK
         function displayTimezoneUK() {
             const timezoneElement = document.getElementById('timezone');
-            timezoneElement.textContent = Timezone: Europe/London (UK);
+            timezoneElement.textContent = "Timezone: Europe/London (UK)";
         }
 
-        // Generate rainfall
         function createRain() {
             const rainContainer = document.getElementById('rain');
-            const numberOfDrops = 200; // Adjust for more or fewer drops
+            const numberOfDrops = 200;
 
             for (let i = 0; i < numberOfDrops; i++) {
                 const raindrop = document.createElement('div');
                 raindrop.classList.add('raindrop');
-                raindrop.style.left = ${Math.random() * 100}vw;
-                raindrop.style.top = ${Math.random() * -100}vh; // Start above the screen
-                raindrop.style.animationDuration = ${Math.random() * 3 + 2}s; // Random fall speed
-                raindrop.style.animationDelay = ${Math.random() * 2}s; // Random delay
+                raindrop.style.left = `${Math.random() * 100}vw`;
+                raindrop.style.top = `${Math.random() * -100}vh`;
+                raindrop.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                raindrop.style.animationDelay = `${Math.random() * 2}s`;
                 rainContainer.appendChild(raindrop);
             }
         }
 
-        // Initialize
         updateStatusBasedOnTimeUK();
         displayTimezoneUK();
         createRain();
-
-        // Update status every minute
         setInterval(updateStatusBasedOnTimeUK, 60000);
     </script>
 </body>
